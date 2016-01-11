@@ -11,8 +11,10 @@ WINMERGE = winreg.QueryValue(winreg.HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\Wind
 if not WINMERGE:
     if os.path.exists("%s\WinMerge\WinMergeU.exe" % os.environ['ProgramFiles(x86)']):
         WINMERGE = '"%s\WinMerge\WinMergeU.exe"' % os.environ['ProgramFiles(x86)']
-    else:
+    elif os.path.exists("%s\WinMerge\WinMergeU.exe" % os.environ['ProgramFiles']):
         WINMERGE = '"%s\WinMerge\WinMergeU.exe"' % os.environ['ProgramFiles']
+    else:
+        WINMERGE = '"%s\WinMergePortable\WinMergePortable.exe"' % os.path.dirname(os.path.dirname(sublime.executable_path()))
 
 fileA = fileB = None
 
